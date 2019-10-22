@@ -1,7 +1,7 @@
 {
-    "name": "qdeewifi",
+    "name": "startbitwifi",
     "version": "0.0.1",
-    "description": "Blocks for Hiwonder Qdee IoT",
+    "description": "Blocks for Hiwonder Startbit IoT",
     "license": "MIT",
     "dependencies": {
         "core": "*"
@@ -9,10 +9,10 @@
     "files": [
         "README.md",
         "main.ts",
-        "QdeeRGBLight.ts",
+        "StartbitRGBLight.ts",
         "sendbuffer.asm",
-        "_locales/zh/qdeewifi-strings.json",
-        "_locales/zh/qdeewifi-jsdoc-strings.json"
+        "_locales/zh/startbitwifi-strings.json",
+        "_locales/zh/startbitwifi-jsdoc-strings.json"
     ],
     "testFiles": [
         "test.ts"
@@ -21,7 +21,7 @@
     "yotta": {
         "config": {
             "Hiwonder": {
-                "Qdee": {
+                "Startbit": {
                     "enabled": 0
                 }
             }
