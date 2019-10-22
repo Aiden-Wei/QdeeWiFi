@@ -1,9 +1,9 @@
 
 /*
- qdeewifi package
+ startbitwifi package
 */
 //% weight=10 icon="\uf1eb" color=#2896ff
-namespace qdeewifi {
+namespace startbitwifi {
     export enum Servos {
         //% block="servo 1"
         Servo1 = 0x01,
@@ -34,30 +34,20 @@ namespace qdeewifi {
         //% block="Port 2"
         port2 = 0x02,
         //% block="Port 3"
-        port3 = 0x03,
-        //% block="Port 6"
-        port6 = 0x06,
-        //% block="Port 8"
-        port8 = 0x08
+        port3 = 0x03
     }
 
     export enum LightPort {
         //% block="Port 1"
-        port1 = 0x01,
-       //% block="Port 6"
-        port6 = 0x06,     
-       //% block="Port 8"
-        port8 = 0x08            
+        port1 = 0x01           
     }
     
     export enum TempSensor { 
         //% block="Port 4"
-        port4 = 0x04,       
-        //% block="Port 9"
-        port9 = 0x09              
+        port4 = 0x04            
     }
     
-    export enum Qdee_IOTCmdType {
+    export enum Startbit_IOTCmdType {
         //% block="led color"
         LED_COLOR = 1,
         //% block="Buzzer"
@@ -129,29 +119,19 @@ namespace qdeewifi {
         //% block="Port 2"
         port2 = 0x02,
         //% block="Port 3"
-        port3 = 0x03,        
-        //% block="Port 6"
-        port6 = 0x06,       
-        //% block="Port 8"
-        port8 = 0x08
+        port3 = 0x03
     }
 
     export enum knobPort {
         //% block="Port 1"
-        port1 = 0x01,
-        //% block="Port 6"
-        port6 = 0x06,
-        //% block="Port 8"
-        port8 = 0x08
+        port1 = 0x01
     }
 
     export enum lightbeltPort {
         //% block="Port 1"
         port1 = 0x01,
         //% block="Port 2"
-        port2 = 0x02,
-        //% block="Port 3"
-        port3 = 0x03
+        port2 = 0x02
     }
 
     let versionNum: number = -1;//-1为未定义
@@ -176,12 +156,12 @@ namespace qdeewifi {
     let tempHumiStatus = false;
 
     /**
-     * Qdee IoT initialization, please execute at boot time
+     * Startbit IoT initialization, please execute at boot time
     */
-    //% weight=100 blockId=qdeewifi_Init block="Initialize Qdee IoT"
+    //% weight=100 blockId=startbitwifi_Init block="Initialize Startbit IoT"
     //% subcategory=Init
-    export function qdeewifi_Init() {
-        qdee_initRGBLight();
+    export function startbitwifi_Init() {
+        startbit_initRGBLight();
         serial.redirect(
             SerialPin.P12,
             SerialPin.P8,
@@ -200,55 +180,55 @@ namespace qdeewifi {
     }
 
     /**
-     * Qdee temperature and humidity sensor initialization, please execute at boot time
+     * Startbit temperature and humidity sensor initialization, please execute at boot time
     */
-    //% weight=99 blockId=qdeewifi_temphumi_init block="Initialize Qdee temperature and humidity sensor at port %port"
+    //% weight=99 blockId=startbitwifi_temphumi_init block="Initialize Startbit temperature and humidity sensor at port %port"
     //% subcategory=Init
-    export function qdeewifi_temphumi_init(port: TempSensor) {
-        tempHumiStatus = qdee_initTempHumiSensor();
+    export function startbitwifi_temphumi_init(port: TempSensor) {
+        tempHumiStatus = startbit_initTempHumiSensor();
     }
     /**
-     * Qdee ultrasonic initialization, please execute at boot time
+     * Startbit ultrasonic initialization, please execute at boot time
     */
-    //% weight=98 blockId=qdeewifi_ultrasonic_init block="Initialize Qdee ultrasonic sensor %port"
+    //% weight=98 blockId=startbitwifi_ultrasonic_init block="Initialize Startbit ultrasonic sensor %port"
     //% subcategory=Init
-    export function qdeewifi_ultrasonic_init(port: ultrasonicPort) {
+    export function startbitwifi_ultrasonic_init(port: ultrasonicPort) {
         ultraPort = port;
     }
 
     /**
-     * Qdee light sensor initialization, please execute at boot time
+     * Startbit light sensor initialization, please execute at boot time
     */
-    //% weight=97 blockId=qdeewifi_lightSensor_init block="Initialize Qdee light sensor %port"
+    //% weight=97 blockId=startbitwifi_lightSensor_init block="Initialize Startbit light sensor %port"
     //% subcategory=Init
-    export function qdeewifi_lightSensor_init(port: LightPort) {
+    export function startbitwifi_lightSensor_init(port: LightPort) {
         lightPort = port;
     }
 
     /**
-     * Qdee soil humidity sensor initialization, please execute at boot time
+     * Startbit soil humidity sensor initialization, please execute at boot time
     */
-    //% weight=96 blockId=qdeewifi_soilHumi_init block="Initialize Qdee soil humidity sensor %port"
+    //% weight=96 blockId=startbitwifi_soilHumi_init block="Initialize Startbit soil humidity sensor %port"
     //% subcategory=Init
-    export function qdeewifi_soilHumi_init(port: LightPort) {
+    export function startbitwifi_soilHumi_init(port: LightPort) {
         soilHumiPort = port;
     }
 
     /**
-     * Qdee raindrop sensor initialization, please execute at boot time
+     * Startbit raindrop sensor initialization, please execute at boot time
     */
-    //% weight=95 blockId=qdeewifi_raindrop_init block="Initialize Qdee rain drop sensor %port"
+    //% weight=95 blockId=startbitwifi_raindrop_init block="Initialize Startbit rain drop sensor %port"
     //% subcategory=Init
-    export function qdeewifi_raindrop_init(port: LightPort) {
+    export function startbitwifi_raindrop_init(port: LightPort) {
         rainDropPort = port;
     }
 
     /**
-     * Qdee avoid obstacle sensor initialization, please execute at boot time
+     * Startbit avoid obstacle sensor initialization, please execute at boot time
     */
-    //% weight=94 blockId=qdeewifi_avoidobstacle_init block="Initialize Qdee avoid obstacle sensor %port"
+    //% weight=94 blockId=startbitwifi_avoidobstacle_init block="Initialize Startbit avoid obstacle sensor %port"
     //% subcategory=Init
-    export function qdeewifi_avoidobstacle_init(port: avoidSensorPort) {
+    export function startbitwifi_avoidobstacle_init(port: avoidSensorPort) {
         avoidPort = port;
     }
 
@@ -258,64 +238,59 @@ namespace qdeewifi {
      * @param intensity the brightness of the LED, eg: 7
      * @param count the count of the LED, eg: 4
      */
-    //% weight=93 blockId=qdee_digitaltube block="Initialize digitaltube|%port|intensity %intensity|LED count %count"
+    //% weight=93 blockId=startbit_digitaltube block="Initialize digitaltube|%port|intensity %intensity|LED count %count"
     //% subcategory=Init
-    export function qdee_digitaltube(port: ultrasonicPort, intensity: number, count: number) {
-        Digitaltube = qdee_TM1640create(port, intensity, count);
+    export function startbit_digitaltube(port: ultrasonicPort, intensity: number, count: number) {
+        Digitaltube = startbit_TM1640create(port, intensity, count);
     }
 
     /**
      * Fan port initialization, please execute at boot time
      */
-    //% weight=92 blockId=qdee_initfanPort block="Initialize fan %port"
+    //% weight=92 blockId=startbit_initfanPort block="Initialize fan %port"
     //% subcategory=Init
-    export function qdee_initfanPort(port: avoidSensorPort) {
+    export function startbit_initfanPort(port: avoidSensorPort) {
         fanPort = port;
     }
     /**
      * Pwm servo port initialization, please execute at boot time
      */
-    //% weight=91 blockId=qdee_initPwmServo block="Initialize pwm servo %port"
+    //% weight=91 blockId=startbit_initPwmServo block="Initialize pwm servo %port"
     //% subcategory=Init
-    export function qdee_initPwmServo(port: ultrasonicPort) {
+    export function startbit_initPwmServo(port: ultrasonicPort) {
         servoPort = port;
     }
 
     /**
      * Waterpump initialization, please execute at boot time
      */
-    //% weight=90 blockId=qdee_initWaterpump block="Initialize waterpump %port"
+    //% weight=90 blockId=startbit_initWaterpump block="Initialize waterpump %port"
     //% subcategory=Init
-    export function qdee_initWaterpump(port: WaterPumPort) {
+    export function startbit_initWaterpump(port: WaterPumPort) {
         waterpumPort = port;
     }
 
-    let lhRGBLightBelt: QdeeRGBLight.LHQdeeRGBLight;
+    let lhRGBLightBelt: StartbitRGBLight.LHStartbitRGBLight;
 
     /**
 	 * Initialize Light belt
 	 */
-    //% weight=89 blockId=qdee_belt_initRGBLight block="Initialize light belt at port %port"
+    //% weight=89 blockId=startbit_belt_initRGBLight block="Initialize light belt at port %port"
     //% subcategory=Init
-    export function qdee_belt_initRGBLight(port: lightbeltPort) {
+    export function startbit_belt_initRGBLight(port: lightbeltPort) {
         switch (port) {
             case lightbeltPort.port1:
                 if (!lhRGBLightBelt) {
-                    lhRGBLightBelt = QdeeRGBLight.create(DigitalPin.P1, 15, QdeeRGBPixelMode.RGB);
+                    lhRGBLightBelt = StartbitRGBLight.create(DigitalPin.P1, 15, StartbitRGBPixelMode.RGB);
                 }
                 break;
             case lightbeltPort.port2:
                 if (!lhRGBLightBelt) {
-                    lhRGBLightBelt = QdeeRGBLight.create(DigitalPin.P13, 15, QdeeRGBPixelMode.RGB);
-                }
-                break;
-            case lightbeltPort.port3:
-                if (!lhRGBLightBelt) {
-                    lhRGBLightBelt = QdeeRGBLight.create(DigitalPin.P16, 15, QdeeRGBPixelMode.RGB);
+                    lhRGBLightBelt = StartbitRGBLight.create(DigitalPin.P13, 15, StartbitRGBPixelMode.RGB);
                 }
                 break;
         }
-        qdee_belt_clearLight();
+        startbit_belt_clearLight();
     }
 
     function sendVersionCmd() {
@@ -341,7 +316,7 @@ namespace qdeewifi {
     let handleCmd: string = "";
     let currentVoltage: number = 0;
     let volume: number = 0;
-    let lhRGBLight: QdeeRGBLight.LHQdeeRGBLight;
+    let lhRGBLight: StartbitRGBLight.LHStartbitRGBLight;
     let fanSpeed: number = 0;
 
     let PA6 = 2;
@@ -411,13 +386,29 @@ namespace qdeewifi {
                     let arg3Int: number = strToNumber(cmd.substr(5, 2));
                     let arg4Int: number = strToNumber(cmd.substr(7, 2));
      
-                    control.raiseEvent(MESSAGE_IOT_HEAD, Qdee_IOTCmdType.LED_COLOR);
+                    control.raiseEvent(MESSAGE_IOT_HEAD, Startbit_IOTCmdType.LED_COLOR);
                     
                     if (arg1Int != -1 && arg2Int != -1 && arg3Int != -1 && arg4Int != -1)
                     {
-                        qdee_sendSensorData(Qdee_IOTCmdType.LED_COLOR,arg1Int);
-                        qdee_setPixelRGBSerial(arg1Int, arg2Int, arg3Int, arg4Int);   
+                        startbit_sendSensorData(Startbit_IOTCmdType.LED_COLOR,arg1Int);
+                        startbit_setPixelRGBSerial(arg1Int, arg2Int, arg3Int, arg4Int);   
                     }    
+                }
+                else if (cmd.length == 7) {
+                    let arg1Int: number = strToNumber(cmd.substr(1, 2));
+                    let arg2Int: number = strToNumber(cmd.substr(3, 2));
+                    let arg3Int: number = strToNumber(cmd.substr(5, 2));
+
+                    P14_ad = arg1Int;
+
+                    if (arg3Int != -1) {
+                        currentVoltage = arg3Int * 10353 / 400;
+                        currentVoltage = Math.round(currentVoltage);
+                    }
+
+                    if (arg2Int != -1) {
+                        volume = arg2Int;
+                    }
                 }
             }  
             else if (cmd.charAt(0).compare("B") == 0)
@@ -458,9 +449,9 @@ namespace qdeewifi {
                     let arg1Int: number = strToNumber(cmd.substr(1, 2));
                     if (arg1Int != -1)
                     {
-                        control.raiseEvent(MESSAGE_IOT_HEAD, Qdee_IOTCmdType.SHOW);
-                        qdee_sendSensorData(Qdee_IOTCmdType.SHOW,arg1Int);
-                        qdee_show_expressions(arg1Int);
+                        control.raiseEvent(MESSAGE_IOT_HEAD, Startbit_IOTCmdType.SHOW);
+                        startbit_sendSensorData(Startbit_IOTCmdType.SHOW,arg1Int);
+                        startbit_show_expressions(arg1Int);
                         
                   }    
               }
@@ -473,50 +464,50 @@ namespace qdeewifi {
                   if (arg1Int != -1)
                   {
                       music.playTone(392, music.beat(BeatFraction.Quarter));
-                      control.raiseEvent(MESSAGE_IOT_HEAD, Qdee_IOTCmdType.IR_REMOTE);
-                      qdee_sendSensorData(Qdee_IOTCmdType.IR_REMOTE, arg1Int);
+                      control.raiseEvent(MESSAGE_IOT_HEAD, Startbit_IOTCmdType.IR_REMOTE);
+                      startbit_sendSensorData(Startbit_IOTCmdType.IR_REMOTE, arg1Int);
                       basic.pause(100);  
-                      qdee_send_learn_data(arg1Int);
+                      startbit_send_learn_data(arg1Int);
                   }      
               }
           }
           else if (cmd.charAt(0).compare("F") == 0 && cmd.length == 1)//查询音量
           {
-              control.raiseEvent(MESSAGE_IOT_HEAD, Qdee_IOTCmdType.SOUND);
+              control.raiseEvent(MESSAGE_IOT_HEAD, Startbit_IOTCmdType.SOUND);
           }
           else if (cmd.charAt(0).compare("G") == 0 && cmd.length == 1)//查询光线
           {
-              control.raiseEvent(MESSAGE_IOT_HEAD, Qdee_IOTCmdType.LIGHT);
+              control.raiseEvent(MESSAGE_IOT_HEAD, Startbit_IOTCmdType.LIGHT);
           }
           else if (cmd.charAt(0).compare("H") == 0 && cmd.length == 1)//查询温度
           {
-              control.raiseEvent(MESSAGE_IOT_HEAD, Qdee_IOTCmdType.TEMP);
+              control.raiseEvent(MESSAGE_IOT_HEAD, Startbit_IOTCmdType.TEMP);
           }
           else if (cmd.charAt(0).compare("I") == 0 && cmd.length == 1)//查询湿度
           {
-              control.raiseEvent(MESSAGE_IOT_HEAD, Qdee_IOTCmdType.HUMI);
+              control.raiseEvent(MESSAGE_IOT_HEAD, Startbit_IOTCmdType.HUMI);
           }
           else if (cmd.charAt(0).compare("J") == 0 && cmd.length == 1)//查询土壤湿度
           {
-              control.raiseEvent(MESSAGE_IOT_HEAD, Qdee_IOTCmdType.SOIL_HUMI);
+              control.raiseEvent(MESSAGE_IOT_HEAD, Startbit_IOTCmdType.SOIL_HUMI);
           }   
           else if (cmd.charAt(0).compare("K") == 0 && cmd.length == 1)//查询超声波
           {
-              control.raiseEvent(MESSAGE_IOT_HEAD, Qdee_IOTCmdType.ULTRASONIC);
+              control.raiseEvent(MESSAGE_IOT_HEAD, Startbit_IOTCmdType.ULTRASONIC);
          }
         else if (cmd.charAt(0).compare("L") == 0 && cmd.length == 2)//水泵
         {
              let arg1Int: number = strToNumber(cmd.substr(1, 1));
              if (arg1Int != -1)
              {
-                 qdee_sendSensorData(Qdee_IOTCmdType.WATERPUMP_ON, arg1Int);
+                 startbit_sendSensorData(Startbit_IOTCmdType.WATERPUMP_ON, arg1Int);
                 if (arg1Int == 1)
                  {
-                     control.raiseEvent(MESSAGE_IOT_HEAD, Qdee_IOTCmdType.WATERPUMP_ON);
+                     control.raiseEvent(MESSAGE_IOT_HEAD, Startbit_IOTCmdType.WATERPUMP_ON);
                  }
                  else if (arg1Int == 0)
                  {
-                     control.raiseEvent(MESSAGE_IOT_HEAD, Qdee_IOTCmdType.WATERPUMP_OFF);
+                     control.raiseEvent(MESSAGE_IOT_HEAD, Startbit_IOTCmdType.WATERPUMP_OFF);
                  }
              }    
         }    
@@ -527,39 +518,39 @@ namespace qdeewifi {
             let arg3Int: number = strToNumber(cmd.substr(7, 4));//时间
 
             if (arg1Int != -1 && arg2Int != -1 && arg3Int != -1) {
-                qdeeiot_setPwmServo(arg1Int, arg2Int, arg3Int);
-                control.raiseEvent(MESSAGE_IOT_HEAD, Qdee_IOTCmdType.SERVO);
+                startbitiot_setPwmServo(arg1Int, arg2Int, arg3Int);
+                control.raiseEvent(MESSAGE_IOT_HEAD, Startbit_IOTCmdType.SERVO);
             }
       }        
       else if (cmd.charAt(0).compare("N") == 0 && cmd.length == 1)//查询雨滴传感器
       {
-        control.raiseEvent(MESSAGE_IOT_HEAD, Qdee_IOTCmdType.RAINDROP);
+        control.raiseEvent(MESSAGE_IOT_HEAD, Startbit_IOTCmdType.RAINDROP);
       }
       else if (cmd.charAt(0).compare("O") == 0 && cmd.length == 1)//查询红外门窗监控状态
       {
-        control.raiseEvent(MESSAGE_IOT_HEAD, Qdee_IOTCmdType.INFRARED);
+        control.raiseEvent(MESSAGE_IOT_HEAD, Startbit_IOTCmdType.INFRARED);
       }           
       else if(cmd.charAt(0).compare("Q") == 0 && cmd.length == 5)
       {
             let arg1Int: number = strToNumber(cmd.substr(1, 2));//速度1
             let arg2Int: number = strToNumber(cmd.substr(3, 2));//速度2   
-            qdee_sendSensorData(Qdee_IOTCmdType.MOTOR, arg1Int); 
+            startbit_sendSensorData(Startbit_IOTCmdType.MOTOR, arg1Int); 
             basic.pause(100);    
-            qdeeiot_setMotorSpeed(arg1Int - 100, arg2Int - 100);    
-            control.raiseEvent(MESSAGE_IOT_HEAD, Qdee_IOTCmdType.MOTOR);
+            startbitiot_setMotorSpeed(arg1Int - 100, arg2Int - 100);    
+            control.raiseEvent(MESSAGE_IOT_HEAD, Startbit_IOTCmdType.MOTOR);
       } 
       else if (cmd.charAt(0).compare("R") == 0) {
         sensorList = [];
         let arg1Int: number = strToNumber(cmd.substr(1, 2));
         if (arg1Int == 0) {
-            qdee_sendSensorData(Qdee_IOTCmdType.SENSOR, 0);
-            control.raiseEvent(MESSAGE_IOT_HEAD, Qdee_IOTCmdType.SENSOR_OFF);
+            startbit_sendSensorData(Startbit_IOTCmdType.SENSOR, 0);
+            control.raiseEvent(MESSAGE_IOT_HEAD, Startbit_IOTCmdType.SENSOR_OFF);
         }
         else {
             let sensorCount = (cmd.length - 1) / 2;
             for (let i = 0; i < sensorCount; i++) {
                 sensorList.insertAt(i, strToNumber(cmd.substr(i * 2 + 1, 2)))
-                control.raiseEvent(MESSAGE_IOT_HEAD, Qdee_IOTCmdType.SENSOR);
+                control.raiseEvent(MESSAGE_IOT_HEAD, Startbit_IOTCmdType.SENSOR);
                 }
             }
         }
@@ -567,24 +558,24 @@ namespace qdeewifi {
             let argInt: number = strToNumber(cmd.substr(1, 2));//速度
             if (argInt != -1) {
                 fanSpeed = argInt - 100;
-                qdee_sendSensorData(Qdee_IOTCmdType.FAN, argInt);
+                startbit_sendSensorData(Startbit_IOTCmdType.FAN, argInt);
                 basic.pause(100);    
-                control.raiseEvent(MESSAGE_IOT_HEAD, Qdee_IOTCmdType.FAN);
+                control.raiseEvent(MESSAGE_IOT_HEAD, Startbit_IOTCmdType.FAN);
             }
         } 
         else if (cmd.charAt(0).compare("U") == 0) {
             let arg2Int: number = strToNumber(cmd.substr(1, 4));//数码管数值
             let arg3Int: number = strToNumber(cmd.substr(5, 1));//小数点位置
             if (arg2Int != -1 && arg3Int != -1) {
-                qdee_showNumber(arg2Int);
+                startbit_showNumber(arg2Int);
                 if (arg3Int != 5)
                 {
                     if (arg3Int == 6)
                     {
-                        qdeeiot_digitaltube_clear();
+                        startbitiot_digitaltube_clear();
                     }
                     else
-                        qdee_digitaltube_showDP(arg3Int, true);
+                        startbit_digitaltube_showDP(arg3Int, true);
                 }    
             }                
         }
@@ -605,33 +596,33 @@ namespace qdeewifi {
                         if (arg1Int == 0x10) {
                         if (arg2Int == 0 && arg3Int == 0 && arg4Int == 0)
                         {
-                            control.raiseEvent(MESSAGE_IOT_HEAD, Qdee_IOTCmdType.FLOWING_OFF);
-                            qdee_sendSensorData(Qdee_IOTCmdType.LIGHT_BELT, 20);
+                            control.raiseEvent(MESSAGE_IOT_HEAD, Startbit_IOTCmdType.FLOWING_OFF);
+                            startbit_sendSensorData(Startbit_IOTCmdType.LIGHT_BELT, 20);
                         }
                         else
                         {
-                            control.raiseEvent(MESSAGE_IOT_HEAD, Qdee_IOTCmdType.FLOWING_ON);
-                            qdee_sendSensorData(Qdee_IOTCmdType.LIGHT_BELT,21);
+                            control.raiseEvent(MESSAGE_IOT_HEAD, Startbit_IOTCmdType.FLOWING_ON);
+                            startbit_sendSensorData(Startbit_IOTCmdType.LIGHT_BELT,21);
                         }
                     }
                     else if (arg1Int == 0x11)
                     {
                         if (arg2Int == 0 && arg3Int == 0 && arg4Int == 0)
                         {
-                            control.raiseEvent(MESSAGE_IOT_HEAD, Qdee_IOTCmdType.ROLL_OFF);
-                            qdee_sendSensorData(Qdee_IOTCmdType.LIGHT_BELT,22);
+                            control.raiseEvent(MESSAGE_IOT_HEAD, Startbit_IOTCmdType.ROLL_OFF);
+                            startbit_sendSensorData(Startbit_IOTCmdType.LIGHT_BELT,22);
                         }
                         else
                         {
-                            control.raiseEvent(MESSAGE_IOT_HEAD, Qdee_IOTCmdType.ROLL_ON);
-                            qdee_sendSensorData(Qdee_IOTCmdType.LIGHT_BELT,23);
+                            control.raiseEvent(MESSAGE_IOT_HEAD, Startbit_IOTCmdType.ROLL_ON);
+                            startbit_sendSensorData(Startbit_IOTCmdType.LIGHT_BELT,23);
                         }
                     }
                     else
                     {
-                        control.raiseEvent(MESSAGE_IOT_HEAD, Qdee_IOTCmdType.LIGHT_BELT);
-                        qdee_sendSensorData(Qdee_IOTCmdType.LIGHT_BELT,arg1Int);
-                        qdee_belt_setPixelRGBSerial(arg1Int, arg2Int, arg3Int, arg4Int);  
+                        control.raiseEvent(MESSAGE_IOT_HEAD, Startbit_IOTCmdType.LIGHT_BELT);
+                        startbit_sendSensorData(Startbit_IOTCmdType.LIGHT_BELT,arg1Int);
+                        startbit_belt_setPixelRGBSerial(arg1Int, arg2Int, arg3Int, arg4Int);  
                     }
                 }  
             }
@@ -646,7 +637,7 @@ namespace qdeewifi {
         }      
         else if (cmd.charAt(0).compare("W") == 0)
         {        
-            qdee_sendSensorOnlineData();
+            startbit_sendSensorOnlineData();
         }    
         if (cmd.compare("IROK") == 0) {
                 music.playTone(988, music.beat(BeatFraction.Quarter));
@@ -727,7 +718,7 @@ namespace qdeewifi {
             return -1;
     }
 
-     function qdeeiot_setPwmServo(index: number, angle: number, duration: number) {
+     function startbitiot_setPwmServo(index: number, angle: number, duration: number) {
         angle = angle | 0;
          angle = Math.clamp(0, 180, angle);
          if (servoPort == ultrasonicPort.port1)
@@ -749,11 +740,11 @@ namespace qdeewifi {
     /**
     *	Set the speed of the number 1 motor and number 2 motor, range of -100~100, that can control the tank to go advance or turn of.
     */
-    //% weight=87 blockId=qdeeiot_setMotorSpeed block="Set motor1 speed(-100~100)|%speed1|and motor2|speed %speed2"
+    //% weight=87 blockId=startbitiot_setMotorSpeed block="Set motor1 speed(-100~100)|%speed1|and motor2|speed %speed2"
     //% speed1.min=-100 speed1.max=100
     //% speed2.min=-100 speed2.max=100
     //% subcategory=Control
-    export function qdeeiot_setMotorSpeed(speed1: number, speed2: number) {
+    export function startbitiot_setMotorSpeed(speed1: number, speed2: number) {
         if (speed1 > 100 || speed1 < -100 || speed2 > 100 || speed2 < -100) {
             return;
         }
@@ -772,10 +763,10 @@ namespace qdeewifi {
     /**
     *	Set the water pump on/off
     */
-    //% weight=86 blockId=qdeeiot_setWaterPump block="Set water pump speed(0~100) %speed"
+    //% weight=86 blockId=startbitiot_setWaterPump block="Set water pump speed(0~100) %speed"
     //% speed.min=0 speed.max=100
     //% subcategory=Control
-    export function qdeeiot_setWaterPump(speed: number) {
+    export function startbitiot_setWaterPump(speed: number) {
         if (waterpumPort == INVALID_PORT)
             return;
         if (speed > 100) {
@@ -800,12 +791,12 @@ namespace qdeewifi {
     }
 
     /**
-    * Set the Qdee show facial expressions
+    * Set the Startbit show facial expressions
     */
-    //% weight=85 blockId=qdee_show_expressions block="Qdee show facial expressions %type"
+    //% weight=85 blockId=startbit_show_expressions block="Startbit show facial expressions %type"
     //% type.min=0 type.max=10
     //% subcategory=Control
-    export function qdee_show_expressions(type: number) {
+    export function startbit_show_expressions(type: number) {
         switch (type)
         {
             case 0:
@@ -866,18 +857,18 @@ namespace qdeewifi {
       /**
      * Get phone command set fan speed
      */
-    //% weight=84 blockId=qdee_getFanSpeedSet block="Qdee get fan speed"
+    //% weight=84 blockId=startbit_getFanSpeedSet block="Startbit get fan speed"
     //% subcategory=Control
-    export function qdee_getFanSpeedSet(): number {
+    export function startbit_getFanSpeedSet(): number {
         return fanSpeed;
     }
     /**
     *	Set the speed of the fan, range of -100~100.
     */
-    //% weight=83 blockId=qdeewifi_setFanSpeed block="Set fan speed(-100~100) %speed"
+    //% weight=83 blockId=startbitwifi_setFanSpeed block="Set fan speed(-100~100) %speed"
     //% speed1.min=-100 speed1.max=100
     //% subcategory=Control
-    export function qdeewifi_setFanSpeed(speed: number) {
+    export function startbitwifi_setFanSpeed(speed: number) {
         if (fanPort == INVALID_PORT)
             return;
         if (speed > 100 || speed < -100) {
@@ -904,43 +895,6 @@ namespace qdeewifi {
                 pins.digitalWritePin(pin2, 0);
                 pins.digitalWritePin(pin1, 0);
             }    
-        }
-        else if(fanPort == avoidSensorPort.port3)
-        {
-            if (speed < 0) {
-                pins.digitalWritePin(DigitalPin.P16, 1);
-                setSTM32IO(0x2D,0)
-            }
-            else if (speed > 0) {
-                pins.digitalWritePin(DigitalPin.P16, 0);
-                setSTM32IO(0x2D,1)
-            }
-            else {
-                pins.digitalWritePin(DigitalPin.P16, 0);
-                setSTM32IO(0x2D,0)
-            } 
-        }
-        else if(fanPort == avoidSensorPort.port6 || fanPort == avoidSensorPort.port8)
-        {
-            let stm21Pin1 = 0x06;
-            let stm21Pin2 = 0x07;
-            if (fanPort == avoidSensorPort.port8)
-            {
-                stm21Pin1 = 0x10;
-                stm21Pin2 = 0x11;
-            }
-            if (speed < 0) {
-                setSTM32IO(stm21Pin1, 1)
-                setSTM32IO(stm21Pin2, 0)
-            }
-            else if (speed > 0) {
-                setSTM32IO(stm21Pin1, 0)
-                setSTM32IO(stm21Pin2, 1)
-            }
-            else {
-                setSTM32IO(stm21Pin1, 0)
-                setSTM32IO(stm21Pin2, 0)
-            }                
         }
     }
 
@@ -1091,7 +1045,7 @@ namespace qdeewifi {
             this._write_dsp_ctrl();
         }
     }
-    function qdee_TM1640create(port: ultrasonicPort, intensity: number, count: number): TM1640LEDs {
+    function startbit_TM1640create(port: ultrasonicPort, intensity: number, count: number): TM1640LEDs {
         let digitaltube = new TM1640LEDs();
         switch (port) {
             case ultrasonicPort.port1:
@@ -1114,9 +1068,9 @@ namespace qdeewifi {
      * show a number. 
      * @param num is a number, eg: 0
      */
-    //% weight=82 blockId=qdee_showNumber block="Digitaltube show number %num"
+    //% weight=82 blockId=startbit_showNumber block="Digitaltube show number %num"
     //% subcategory=Control
-    export function qdee_showNumber(num: number) {
+    export function startbit_showNumber(num: number) {
         Digitaltube.clear();
         Digitaltube.showNumber(num);
     }
@@ -1125,27 +1079,27 @@ namespace qdeewifi {
      * @param bit is the position, eg: 1
      * @param show is show/hide dp, eg: true
      */
-    //% weight=81 blockId=qdee_digitaltube_showDP block="Digitaltube show dotPoint at|%bit|show %show"
+    //% weight=81 blockId=startbit_digitaltube_showDP block="Digitaltube show dotPoint at|%bit|show %show"
     //% subcategory=Control 
-    export function qdee_digitaltube_showDP(bit: number = 1, show: boolean = true) {
+    export function startbit_digitaltube_showDP(bit: number = 1, show: boolean = true) {
         Digitaltube.showDP(bit, show);
     } 
     /**
      * clear LED. 
      */
-    //% weight=80 blockId=qdeeiot_digitaltube_clear block="Clear digitaltube"
+    //% weight=80 blockId=startbitiot_digitaltube_clear block="Clear digitaltube"
     //% subcategory=Control    
-    export function qdeeiot_digitaltube_clear() {
+    export function startbitiot_digitaltube_clear() {
         Digitaltube.clear();
     }  
     /**
     * Set ir enter learn mode
     * @param num number of the learn code in 1-10. eg: 1
     */
-    //% weight=79 blockId=qdeeiot_ir_learn_mode block="Set ir enter learning mode,code number(1~10) %num|"   
+    //% weight=79 blockId=startbitiot_ir_learn_mode block="Set ir enter learning mode,code number(1~10) %num|"   
     //% num.min=1 num.max=10    
     //% subcategory=IR
-    export function qdeeiot_ir_learn_mode(num: number) {
+    export function startbitiot_ir_learn_mode(num: number) {
         if (num < 1 || num > 10)
             return;
         let buf = pins.createBuffer(6);
@@ -1159,13 +1113,13 @@ namespace qdeewifi {
     }
 
     /**
-    * Let Qdee send ir learn data
+    * Let Startbit send ir learn data
     * @param num number of the learn code in 1-10. eg: 1
     */
-    //% weight=78 blockId=qdee_send_learn_data block="Let Qdee send ir learning code,code|number(1~10) %num|"
+    //% weight=78 blockId=startbit_send_learn_data block="Let Startbit send ir learning code,code|number(1~10) %num|"
     //% num.min=1 num.max=10  
     //% subcategory=IR
-    export function qdee_send_learn_data(num: number) {
+    export function startbit_send_learn_data(num: number) {
         if (num < 1 || num > 10)
             return;
         let buf = pins.createBuffer(8);
@@ -1182,26 +1136,26 @@ namespace qdeewifi {
     /**
     * Get the volume level detected by the sound sensor, range 0 to 255
     */
-    //% weight=77 blockId=qdeeiot_getSoundVolume block="Sound volume"
+    //% weight=77 blockId=startbitiot_getSoundVolume block="Sound volume"
     //% subcategory=Sensor
-    export function qdeeiot_getSoundVolume(): number {
+    export function startbitiot_getSoundVolume(): number {
         return volume;
     }
     /**
-     *  Get Qdee current voltage,the unit is mV
+     *  Get Startbit current voltage,the unit is mV
     */
-    //% weight=76 blockId=qdeeiot_getBatVoltage block="Get Qdee current voltage (mV)"
+    //% weight=76 blockId=startbitiot_getBatVoltage block="Get Startbit current voltage (mV)"
     //% subcategory=Sensor
-    export function qdeeiot_getBatVoltage(): number {
+    export function startbitiot_getBatVoltage(): number {
         return currentVoltage;
     }
     let distanceBak = 0;
     /**
      * Get the distance of ultrasonic detection to the obstacle 
      */
-    //% weight=74 blockId=qdeeiot_ultrasonic  block="Ultrasonic distance(cm)"
+    //% weight=74 blockId=startbitiot_ultrasonic  block="Ultrasonic distance(cm)"
     //% subcategory=Sensor    
-    export function qdeeiot_ultrasonic(): number {
+    export function startbitiot_ultrasonic(): number {
         if (ultraPort == INVALID_PORT)
             return 0;
         let trigPin: DigitalPin = DigitalPin.P1;
@@ -1242,9 +1196,9 @@ namespace qdeewifi {
     /**
      * Get light level
      */
-    //% weight=72 blockId=qdeeiot_getLightLevel block="Get light level(0~255)"
+    //% weight=72 blockId=startbitiot_getLightLevel block="Get light level(0~255)"
     //% subcategory=Sensor     
-    export function qdeeiot_getLightLevel(): number
+    export function startbitiot_getLightLevel(): number
     {
         if (lightPort == INVALID_PORT)
             return 0;
@@ -1255,21 +1209,15 @@ namespace qdeewifi {
                 value = pins.analogReadPin(AnalogPin.P1);
                 value = mapRGB(value, 0, 1023, 0, 255);
                 break;
-            case LightPort.port6:
-                value = PA6_ad;
-                break;
-            case LightPort.port8:
-                value = PB0_ad;
-                break;
         }
         return Math.round(255-value);
     }
     /**
      * Get soil humidity
      */
-    //% weight=70 blockId="qdeeiot_getsoilhumi" block="Qdee get soil humidity"
+    //% weight=70 blockId="startbitiot_getsoilhumi" block="Startbit get soil humidity"
     //% subcategory=Sensor     
-    export function qdeeiot_getsoilhumi(): number {
+    export function startbitiot_getsoilhumi(): number {
         if (soilHumiPort == INVALID_PORT)
             return 0;
         let value: number = 0;
@@ -1277,22 +1225,14 @@ namespace qdeewifi {
             value = pins.analogReadPin(AnalogPin.P1);
             value = mapRGB(value, 0, 1023, 0, 100);
         }
-        else if (soilHumiPort == LightPort.port6) {
-            value = PA6_ad;
-            value = mapRGB(value, 0, 255, 0, 100);
-        }
-        else if (soilHumiPort == LightPort.port8) {
-            value = PB0_ad;
-            value = mapRGB(value, 0, 255, 0, 100);
-        }
         return Math.round(value);
     }
     /**
      * Get soil humidity
      */
-    //% weight=68 blockId="qdeeiot_raindrop" block="Qdee get rain drop sensor ad value(0~255)"
+    //% weight=68 blockId="startbitiot_raindrop" block="Startbit get rain drop sensor ad value(0~255)"
     //% subcategory=Sensor     
-    export function qdeeiot_raindrop(): number {
+    export function startbitiot_raindrop(): number {
         if (rainDropPort == INVALID_PORT)
             return 0;
         let value: number = 0;
@@ -1300,21 +1240,15 @@ namespace qdeewifi {
             value = pins.analogReadPin(AnalogPin.P1);
             value = mapRGB(value, 0, 1023, 0, 255);
         }
-        else if (rainDropPort == LightPort.port6) {
-            value = PA6_ad;
-        }
-        else if (rainDropPort == LightPort.port8) {
-            value = PB0_ad;
-        }
         return Math.round(value);
     }
 
 /**
 * Get the obstacle avoidance sensor status,1 detect obstacle,0 no detect obstacle
 */   
-   //% weight=64 blockId=qdee_avoidSensor block="Obstacle avoidance sensor detect obstacle ?"
+   //% weight=64 blockId=startbit_avoidSensor block="Obstacle avoidance sensor detect obstacle ?"
    //% subcategory=Sensor    
-    export function qdee_avoidSensor(): number {
+    export function startbit_avoidSensor(): number {
         if (avoidPort == INVALID_PORT)
             return 0;
         let status = 0;
@@ -1332,8 +1266,6 @@ namespace qdeewifi {
                 pins.setPull(DigitalPin.P16, PinPullMode.PullUp);
                 status = pins.digitalReadPin(DigitalPin.P16);
                 break;
-            case avoidSensorPort.port6:status = PA6;break;
-            case avoidSensorPort.port8:status = PB0;break;
         }   
         if (status == 1)
             flag = 0;
@@ -1361,9 +1293,9 @@ namespace qdeewifi {
         return val;
     }
 
-    function qdee_initTempHumiSensor(): boolean {
+    function startbit_initTempHumiSensor(): boolean {
         for (let i = 0; i < 10; i++) {
-            if (qdee_GetInitStatus()) {
+            if (startbit_GetInitStatus()) {
                 return true;
             }
             basic.pause(500);
@@ -1372,7 +1304,7 @@ namespace qdeewifi {
         return false;
     }
 
-    function qdee_GetInitStatus(): boolean {
+    function startbit_GetInitStatus(): boolean {
         temp_i2cwrite(0xe108);
         let value = temp_i2cread(1);
         if ((value[0] & 0x68) == 0x08)
@@ -1381,7 +1313,7 @@ namespace qdeewifi {
             return false;
     }
 
-    function qdee_getAc() {
+    function startbit_getAc() {
         temp_i2cwrite(0xac33);
         basic.pause(100)
         let value = temp_i2cread(1);
@@ -1395,10 +1327,10 @@ namespace qdeewifi {
     }
 
     function readTempHumi(select: Temp_humi): number {
-        while (!qdee_GetInitStatus()) {
+        while (!startbit_GetInitStatus()) {
             basic.pause(30);
         }
-        qdee_getAc();
+        startbit_getAc();
         let buf = temp_i2cread(6);
         if (buf.length != 6) {
             // serial.writeLine("444444")
@@ -1427,20 +1359,20 @@ namespace qdeewifi {
     /**
       * Get sensor temperature and humidity
       */
-    //% weight=60 blockId="qdeeiot_gettemperature" block="Qdee get %select"
+    //% weight=60 blockId="startbitiot_gettemperature" block="Startbit get %select"
     //% subcategory=Sensor     
-    export function qdeeiot_gettemperature(select: Temp_humi): number {
+    export function startbitiot_gettemperature(select: Temp_humi): number {
         return readTempHumi(select);
     }
 
 /**
-        * Do someting when Qdee receive remote-control code
+        * Do someting when Startbit receive remote-control code
         * @param code the ir key button that needs to be pressed
         * @param body code to run when event is raised
         */
-   //% weight=58 blockId=onQdeeGetCmd block="on Qdee get|%code|Command"
+   //% weight=58 blockId=onStartbitGetCmd block="on Startbit get|%code|Command"
    //% subcategory=Data  
-   export function onQdeeGetCmd(code: Qdee_IOTCmdType, body: Action) {
+   export function onStartbitGetCmd(code: Startbit_IOTCmdType, body: Action) {
        control.onEvent(MESSAGE_IOT_HEAD, code, body);
    }
 
@@ -1448,41 +1380,41 @@ namespace qdeewifi {
     * Send sensor data 
     * 
     */
-   //% weight=56 blockId="qdee_sendSensorData" block="Send|%cmd|sensor data %data"
+   //% weight=56 blockId="startbit_sendSensorData" block="Send|%cmd|sensor data %data"
   //% subcategory=Data
-   export function qdee_sendSensorData(cmd: Qdee_IOTCmdType, data: number) {
+   export function startbit_sendSensorData(cmd: Startbit_IOTCmdType, data: number) {
        let cmdStr: string;
        switch (cmd) {
-           case Qdee_IOTCmdType.LED_COLOR:cmdStr = "A";break;
-           case Qdee_IOTCmdType.BUZZER:cmdStr = "B";break;
-           case Qdee_IOTCmdType.SHOW:cmdStr = "C";break;
-           case Qdee_IOTCmdType.SHAKE:cmdStr = "D";break;  
-           case Qdee_IOTCmdType.IR_REMOTE:cmdStr = "E";break;  
-           case Qdee_IOTCmdType.SOUND:cmdStr = "F";break;
-           case Qdee_IOTCmdType.LIGHT:cmdStr = "G";break;
-           case Qdee_IOTCmdType.TEMP:cmdStr = "H";break;
-           case Qdee_IOTCmdType.HUMI:cmdStr = "I";break;
-           case Qdee_IOTCmdType.SOIL_HUMI:cmdStr = "J";break;
-           case Qdee_IOTCmdType.ULTRASONIC:cmdStr = "K";break;
-           case Qdee_IOTCmdType.WATERPUMP_ON:
-           case Qdee_IOTCmdType.WATERPUMP_OFF:
+           case Startbit_IOTCmdType.LED_COLOR:cmdStr = "A";break;
+           case Startbit_IOTCmdType.BUZZER:cmdStr = "B";break;
+           case Startbit_IOTCmdType.SHOW:cmdStr = "C";break;
+           case Startbit_IOTCmdType.SHAKE:cmdStr = "D";break;  
+           case Startbit_IOTCmdType.IR_REMOTE:cmdStr = "E";break;  
+           case Startbit_IOTCmdType.SOUND:cmdStr = "F";break;
+           case Startbit_IOTCmdType.LIGHT:cmdStr = "G";break;
+           case Startbit_IOTCmdType.TEMP:cmdStr = "H";break;
+           case Startbit_IOTCmdType.HUMI:cmdStr = "I";break;
+           case Startbit_IOTCmdType.SOIL_HUMI:cmdStr = "J";break;
+           case Startbit_IOTCmdType.ULTRASONIC:cmdStr = "K";break;
+           case Startbit_IOTCmdType.WATERPUMP_ON:
+           case Startbit_IOTCmdType.WATERPUMP_OFF:
                cmdStr = "L"; break;
-           case Qdee_IOTCmdType.SERVO:cmdStr = "M";break;   
-           case Qdee_IOTCmdType.RAINDROP:cmdStr = "N";break;    
-           case Qdee_IOTCmdType.INFRARED:cmdStr = "O";break;      
-           case Qdee_IOTCmdType.BUSSERVO:cmdStr = "P";break;   
-           case Qdee_IOTCmdType.MOTOR:cmdStr = "Q";break; 
-           case Qdee_IOTCmdType.SENSOR: cmdStr = "R"; break;    
-           case Qdee_IOTCmdType.FAN: cmdStr = "T"; break;
-           case Qdee_IOTCmdType.DIGITAL_TUBE: cmdStr = "U"; break;
-           case Qdee_IOTCmdType.LIGHT_BELT:
-           case Qdee_IOTCmdType.FLOWING_ON:
-           case Qdee_IOTCmdType.FLOWING_OFF:
-           case Qdee_IOTCmdType.ROLL_ON:
-           case Qdee_IOTCmdType.ROLL_OFF:
+           case Startbit_IOTCmdType.SERVO:cmdStr = "M";break;   
+           case Startbit_IOTCmdType.RAINDROP:cmdStr = "N";break;    
+           case Startbit_IOTCmdType.INFRARED:cmdStr = "O";break;      
+           case Startbit_IOTCmdType.BUSSERVO:cmdStr = "P";break;   
+           case Startbit_IOTCmdType.MOTOR:cmdStr = "Q";break; 
+           case Startbit_IOTCmdType.SENSOR: cmdStr = "R"; break;    
+           case Startbit_IOTCmdType.FAN: cmdStr = "T"; break;
+           case Startbit_IOTCmdType.DIGITAL_TUBE: cmdStr = "U"; break;
+           case Startbit_IOTCmdType.LIGHT_BELT:
+           case Startbit_IOTCmdType.FLOWING_ON:
+           case Startbit_IOTCmdType.FLOWING_OFF:
+           case Startbit_IOTCmdType.ROLL_ON:
+           case Startbit_IOTCmdType.ROLL_OFF:
                cmdStr = "V"; break;
        }
-       if ((cmd == Qdee_IOTCmdType.TEMP || cmd == Qdee_IOTCmdType.HUMI) && !tempHumiStatus)
+       if ((cmd == Startbit_IOTCmdType.TEMP || cmd == Startbit_IOTCmdType.HUMI) && !tempHumiStatus)
        {
            cmdStr += 'NO';  
        }
@@ -1501,7 +1433,7 @@ namespace qdeewifi {
        serial.writeBuffer(buf);
     }
 
-    function qdee_sendSensorOnlineData() {
+    function startbit_sendSensorOnlineData() {
         let cmdStr: string = "W";
         if (fanPort != INVALID_PORT)
             cmdStr += "A";
@@ -1541,9 +1473,9 @@ namespace qdeewifi {
     * Send sensor data 
     * 
     */
-   //% weight=55 blockId="qdee_sendSelectSensorData" block="Send sensor data"
+   //% weight=55 blockId="startbit_sendSelectSensorData" block="Send sensor data"
   //% subcategory=Data
-    export function qdee_sendSelectSensorData() {
+    export function startbit_sendSelectSensorData() {
         if (sensorList.length > 0)
         {
             let cmdStr: string = "R";
@@ -1552,11 +1484,11 @@ namespace qdeewifi {
                 switch (sensorList[i])
                 {
                     case 1: cmdStr += ("A" + volume.toString()); break;
-                    case 2: cmdStr += ("B" + (ultraPort != INVALID_PORT ? qdeeiot_ultrasonic().toString() : 'NO')); break;
-                    case 3: cmdStr += ("C" + (lightPort != INVALID_PORT ? qdeeiot_getLightLevel().toString() : 'NO')); break;
-                    case 4: cmdStr += ("D" + (soilHumiPort != INVALID_PORT ? qdeeiot_getsoilhumi().toString() : 'NO')); break;
-                    case 5: cmdStr += ("E" + (rainDropPort != INVALID_PORT ? qdeeiot_raindrop().toString() : 'NO')); break;
-                    case 6: cmdStr += ("F" + (avoidPort != INVALID_PORT ? qdee_avoidSensor().toString() : 'NO')); break;
+                    case 2: cmdStr += ("B" + (ultraPort != INVALID_PORT ? startbitiot_ultrasonic().toString() : 'NO')); break;
+                    case 3: cmdStr += ("C" + (lightPort != INVALID_PORT ? startbitiot_getLightLevel().toString() : 'NO')); break;
+                    case 4: cmdStr += ("D" + (soilHumiPort != INVALID_PORT ? startbitiot_getsoilhumi().toString() : 'NO')); break;
+                    case 5: cmdStr += ("E" + (rainDropPort != INVALID_PORT ? startbitiot_raindrop().toString() : 'NO')); break;
+                    case 6: cmdStr += ("F" + (avoidPort != INVALID_PORT ? startbit_avoidSensor().toString() : 'NO')); break;
                     case 7: cmdStr += ("G" + currentVoltage.toString()); break;
                 }
             }
@@ -1581,129 +1513,129 @@ namespace qdeewifi {
     /**
 	 * Initialize RGB
 	 */
-    function qdee_initRGBLight() {
+    function startbit_initRGBLight() {
         if (!lhRGBLight) {
-            lhRGBLight = QdeeRGBLight.create(DigitalPin.P15, 6, QdeeRGBPixelMode.RGB);
+            lhRGBLight = StartbitRGBLight.create(DigitalPin.P15, 6, StartbitRGBPixelMode.RGB);
         }
-        qdee_clearLight();
+        startbit_clearLight();
     }
 
     /**
          * Set the brightness of the strip. This flag only applies to future operation.
          * @param brightness a measure of LED brightness in 0-255. eg: 255
     */
-    //% blockId="qdee_setBrightness" block="set brightness %brightness"
+    //% blockId="startbit_setBrightness" block="set brightness %brightness"
     //% weight=54
     //% subcategory=Coloured_lights
-    export function qdee_setBrightness(brightness: number): void {
+    export function startbit_setBrightness(brightness: number): void {
         lhRGBLight.setBrightness(brightness);
     }
     
     /**
      * Set the color of the colored lights, after finished the setting please perform  the display of colored lights.
      */
-    //% weight=52 blockId=qdee_setPixelRGB block="Set|%lightoffset|color to %rgb"
+    //% weight=52 blockId=startbit_setPixelRGB block="Set|%lightoffset|color to %rgb"
     //% subcategory=Coloured_lights    
-    export function qdee_setPixelRGB(lightoffset: QdeeLights, rgb: QdeeRGBColors) {
+    export function startbit_setPixelRGB(lightoffset: StartbitLights, rgb: StartbitRGBColors) {
         lhRGBLight.setPixelColor(lightoffset, rgb);
     }
     
     /**
      * Set RGB Color argument
      */
-    //% weight=50 blockId=qdee_setPixelRGBArgs block="Set|%lightoffset|color to %rgb"
+    //% weight=50 blockId=startbit_setPixelRGBArgs block="Set|%lightoffset|color to %rgb"
     //% subcategory=Coloured_lights    
-    export function qdee_setPixelRGBArgs(lightoffset: QdeeLights, rgb: number) {
+    export function startbit_setPixelRGBArgs(lightoffset: StartbitLights, rgb: number) {
         lhRGBLight.setPixelColor(lightoffset, rgb);
     }
 
     /**
      * Display the colored lights, and set the color of the colored lights to match the use. After setting the color of the colored lights, the color of the lights must be displayed.
      */
-    //% weight=48 blockId=qdee_showLight block="Show light"
+    //% weight=48 blockId=startbit_showLight block="Show light"
     //% subcategory=Coloured_lights    
-    export function qdee_showLight() {
+    export function startbit_showLight() {
         lhRGBLight.show();
     }
 
-    function qdee_setPixelRGBSerial(lightoffset: number, r: number, g: number, b: number) {
+    function startbit_setPixelRGBSerial(lightoffset: number, r: number, g: number, b: number) {
         lhRGBLight.setPixelColorRGB(lightoffset, r, g, b);
     }
     /**
      * Clear the color of the colored lights and turn off the lights.
      */
-    //% weight=46 blockGap=50 blockId=qdee_clearLight block="Clear light"
+    //% weight=46 blockGap=50 blockId=startbit_clearLight block="Clear light"
     //% subcategory=Coloured_lights    
-    export function qdee_clearLight() {
+    export function startbit_clearLight() {
         lhRGBLight.clear();
     }
 
     /**
      * Set the color of the colored lights, after finished the setting please perform  the display of colored lights.
      */
-    //% weight=44 blockId=qdee_belt_setPixelRGB block="Set light belt|%lightoffset|color to %rgb"
+    //% weight=44 blockId=startbit_belt_setPixelRGB block="Set light belt|%lightoffset|color to %rgb"
     //% subcategory=Coloured_lights    
-    export function qdee_belt_setPixelRGB(lightoffset: QdeeLightsBelt, rgb: QdeeRGBColors) {
+    export function startbit_belt_setPixelRGB(lightoffset: StartbitLightsBelt, rgb: StartbitRGBColors) {
         lhRGBLightBelt.setBeltPixelColor(lightoffset, rgb);
     }
     
-    function qdee_belt_setPixelRGBSerial(lightoffset: number, r: number, g: number, b: number) {
+    function startbit_belt_setPixelRGBSerial(lightoffset: number, r: number, g: number, b: number) {
         lhRGBLightBelt.setPixelColorRGB(lightoffset, r, g, b);
     }
 
     /**
      * Set the color of the colored lights, after finished the setting please perform  the display of colored lights.
      */
-    //% weight=43 blockId=qdee_belt_setPixelRGBWiFi block="Set light belt|%lightoffset|(0~14) color according to WiFi data"
+    //% weight=43 blockId=startbit_belt_setPixelRGBWiFi block="Set light belt|%lightoffset|(0~14) color according to WiFi data"
     //% lightoffset.min=0 lightoffset.max=14 
     //% subcategory=Coloured_lights    
-    export function qdee_belt_setPixelRGBWiFi(lightoffset: number) {
+    export function startbit_belt_setPixelRGBWiFi(lightoffset: number) {
         lhRGBLightBelt.setPixelColorRGB(lightoffset, setColorArgR, setColorArgG, setColorArgB);
     }
     /**
      * Set the color of the colored lights, after finished the setting please perform  the display of colored lights.
      */
-    //% weight=42 blockId=qdee_belt_setPixelRGBIndex block="Set light belt|%lightoffset|color to %rgb(1~9)"
+    //% weight=42 blockId=startbit_belt_setPixelRGBIndex block="Set light belt|%lightoffset|color to %rgb(1~9)"
     //% subcategory=Coloured_lights    
-    export function qdee_belt_setPixelRGBIndex(lightoffset: QdeeLightsBelt, rgb: number) {
+    export function startbit_belt_setPixelRGBIndex(lightoffset: StartbitLightsBelt, rgb: number) {
         lhRGBLightBelt.setBeltPixelColor(lightoffset, rgb);
     }
     
     /**
      * Set the color of the colored lights, after finished the setting please perform  the display of colored lights.
      */
-    //% weight=40 blockId=qdee_belt_setPixelRGBSingle block="Set light belt index(0~14)|%lightoffset|color to %rgb"
+    //% weight=40 blockId=startbit_belt_setPixelRGBSingle block="Set light belt index(0~14)|%lightoffset|color to %rgb"
     //% lightoffset.min=0 lightoffset.max=14 
     //% subcategory=Coloured_lights    
-    export function qdee_belt_setPixelRGBSingle(lightoffset: number, rgb: QdeeRGBColors) {
+    export function startbit_belt_setPixelRGBSingle(lightoffset: number, rgb: StartbitRGBColors) {
         lhRGBLightBelt.singleSetBeltPixelColor(lightoffset, rgb);
     }
      
     /**
      * Set the color of the colored lights, after finished the setting please perform  the display of colored lights.
      */
-    //% weight=38 blockId=qdee_belt_setPixelRGBSingleRGBIndex block="Set light belt index(0~14)|%lightoffset|color to %rgb(1~9)"
+    //% weight=38 blockId=startbit_belt_setPixelRGBSingleRGBIndex block="Set light belt index(0~14)|%lightoffset|color to %rgb(1~9)"
     //% lightoffset.min=0  lightoffset.max=14 
     //% subcategory=Coloured_lights    
-    export function qdee_belt_setPixelRGBSingleRGBIndex(lightoffset: number, rgb: number) {
+    export function startbit_belt_setPixelRGBSingleRGBIndex(lightoffset: number, rgb: number) {
         lhRGBLightBelt.singleSetBeltPixelColor(lightoffset, rgb);
     }
     
     /**
      * Display the colored lights, and set the color of the colored lights to match the use. After setting the color of the colored lights, the color of the lights must be displayed.
      */
-    //% weight=36 blockId=qdee_belt_showLight block="Show light belt"
+    //% weight=36 blockId=startbit_belt_showLight block="Show light belt"
     //% subcategory=Coloured_lights    
-    export function qdee_belt_showLight() {
+    export function startbit_belt_showLight() {
         lhRGBLightBelt.show();
     }
 
     /**
      * Clear the color of the colored lights and turn off the lights.
      */
-    //% weight=34 blockGap=50 blockId=qdee_belt_clearLight block="Clear light belt"
+    //% weight=34 blockGap=50 blockId=startbit_belt_clearLight block="Clear light belt"
     //% subcategory=Coloured_lights    
-    export function qdee_belt_clearLight() {
+    export function startbit_belt_clearLight() {
         lhRGBLightBelt.clear();
     }
 }
