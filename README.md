@@ -12,6 +12,6 @@ MIT
 (The metadata above is needed for package search.)
 
 ```package
-qdeewifi=github:Hiwonder/StartbitWiFi
+startbitwifi=github:Hiwonder/StartbitWiFi
 ```
 
