@@ -184,7 +184,7 @@ namespace startbitwifi {
     /**
      * Startbit temperature and humidity sensor initialization, please execute at boot time
     */
-    //% weight=99 blockId=startbitwifi_temphumi_init block="Initialize Startbit temperature and humidity sensor at port %port"
+    //% weight=92 blockId=startbitwifi_temphumi_init block="Initialize Startbit temperature and humidity sensor at port %port"
     //% subcategory=Init
     export function startbitwifi_temphumi_init(port: TempSensor) {
         tempHumiStatus = startbit_initTempHumiSensor();
@@ -192,7 +192,7 @@ namespace startbitwifi {
     /**
      * Startbit ultrasonic initialization, please execute at boot time
     */
-    //% weight=98 blockId=startbitwifi_ultrasonic_init block="Initialize Startbit ultrasonic sensor %port"
+    //% weight=90 blockId=startbitwifi_ultrasonic_init block="Initialize Startbit ultrasonic sensor %port"
     //% subcategory=Init
     export function startbitwifi_ultrasonic_init(port: ultrasonicPort) {
         ultraPort = port;
@@ -201,7 +201,8 @@ namespace startbitwifi {
     /**
      * Startbit light sensor initialization, please execute at boot time
     */
-    //% weight=97 blockId=startbitwifi_lightSensor_init block="Initialize Startbit light sensor %port"
+    //% weight=95 blockId=startbitwifi_lightSensor_init block="Initialize Startbit light sensor %port"
+    //% subcategory=Init
     //% subcategory=Init
     export function startbitwifi_lightSensor_init(port: LightPort) {
         lightPort = port;
@@ -210,7 +211,7 @@ namespace startbitwifi {
     /**
      * Startbit soil humidity sensor initialization, please execute at boot time
     */
-    //% weight=96 blockId=startbitwifi_soilHumi_init block="Initialize Startbit soil humidity sensor %port"
+    //% weight=91 blockId=startbitwifi_soilHumi_init block="Initialize Startbit soil humidity sensor %port"
     //% subcategory=Init
     export function startbitwifi_soilHumi_init(port: LightPort) {
         soilHumiPort = port;
@@ -219,7 +220,7 @@ namespace startbitwifi {
     /**
      * Startbit raindrop sensor initialization, please execute at boot time
     */
-    //% weight=95 blockId=startbitwifi_raindrop_init block="Initialize Startbit rain drop sensor %port"
+    //% weight=94 blockId=startbitwifi_raindrop_init block="Initialize Startbit rain drop sensor %port"
     //% subcategory=Init
     export function startbitwifi_raindrop_init(port: LightPort) {
         rainDropPort = port;
@@ -228,7 +229,7 @@ namespace startbitwifi {
     /**
      * Startbit avoid obstacle sensor initialization, please execute at boot time
     */
-    //% weight=94 blockId=startbitwifi_avoidobstacle_init block="Initialize Startbit avoid obstacle sensor %port"
+    //% weight=93 blockId=startbitwifi_avoidobstacle_init block="Initialize Startbit avoid obstacle sensor %port"
     //% subcategory=Init
     export function startbitwifi_avoidobstacle_init(port: avoidSensorPort) {
         avoidPort = port;
@@ -240,7 +241,7 @@ namespace startbitwifi {
      * @param intensity the brightness of the LED, eg: 7
      * @param count the count of the LED, eg: 4
      */
-    //% weight=93 blockId=startbit_digitaltube block="Initialize digitaltube|%port|intensity %intensity|LED count %count"
+    //% weight=89 blockId=startbit_digitaltube block="Initialize digitaltube|%port|intensity %intensity|LED count %count"
     //% subcategory=Init
     export function startbit_digitaltube(port: ultrasonicPort, intensity: number, count: number) {
         Digitaltube = startbit_TM1640create(port, intensity, count);
@@ -249,7 +250,7 @@ namespace startbitwifi {
     /**
      * Fan port initialization, please execute at boot time
      */
-    //% weight=92 blockId=startbit_initfanPort block="Initialize fan %port"
+    //% weight=98 blockId=startbit_initfanPort block="Initialize fan %port"
     //% subcategory=Init
     export function startbit_initfanPort(port: avoidSensorPort) {
         fanPort = port;
@@ -257,7 +258,7 @@ namespace startbitwifi {
     /**
      * Pwm servo port initialization, please execute at boot time
      */
-    //% weight=91 blockId=startbit_initPwmServo block="Initialize pwm servo %port"
+    //% weight=97 blockId=startbit_initPwmServo block="Initialize pwm servo %port"
     //% subcategory=Init
     export function startbit_initPwmServo(port: ultrasonicPort) {
         servoPort = port;
@@ -266,7 +267,7 @@ namespace startbitwifi {
     /**
      * Waterpump initialization, please execute at boot time
      */
-    //% weight=90 blockId=startbit_initWaterpump block="Initialize waterpump %port"
+    //% weight=99 blockId=startbit_initWaterpump block="Initialize waterpump %port"
     //% subcategory=Init
     export function startbit_initWaterpump(port: WaterPumPort) {
         waterpumPort = port;
@@ -277,7 +278,7 @@ namespace startbitwifi {
     /**
 	 * Initialize Light belt
 	 */
-    //% weight=89 blockId=startbit_belt_initRGBLight block="Initialize light belt at port %port"
+    //% weight=96 blockId=startbit_belt_initRGBLight block="Initialize light belt at port %port"
     //% subcategory=Init
     export function startbit_belt_initRGBLight(port: lightbeltPort) {
         switch (port) {
