@@ -1,8 +1,8 @@
 /**
- * QdeeRGBLight package
+ * StartbitRGBLight package
  */
 
-enum QdeeRGBColors {
+enum StartbitRGBColors {
     //% block=red
     Red = 1,
     //% block=orange
@@ -24,7 +24,7 @@ enum QdeeRGBColors {
 }
 
 
- enum QdeeLights {
+ enum StartbitLights {
     //% block="Light 1"
     Light1 = 0x00,
     //% block="Light 2"
@@ -41,7 +41,7 @@ enum QdeeRGBColors {
      All = 0x06
 }
 
-enum QdeeLightsBelt {
+enum StartbitLightsBelt {
         //% block="Light 1"
         Light1 = 0x00,
         //% block="Light 2"
@@ -79,7 +79,7 @@ enum QdeeLightsBelt {
 /**
  * Different modes for RGB or RGB+W RGBLight QbitRGBColors
  */
-enum QdeeRGBPixelMode {
+enum StartbitRGBPixelMode {
     //% block="RGB (GRB format)"
     RGB = 0,
     //% block="RGB+W"
@@ -91,7 +91,7 @@ enum QdeeRGBPixelMode {
 /**
  * QbitRGBLight Functions
  */
-namespace QdeeRGBLight {
+namespace StartbitRGBLight {
     //% shim=sendBufferAsm
     //% parts="QbitRGBLight"
     function sendBuffer(buf: Buffer, pin: DigitalPin) {
@@ -101,14 +101,14 @@ namespace QdeeRGBLight {
     /**
     * A LHQbitRGBLight class
     */
-    export class LHQdeeRGBLight {
+    export class LHStartbitRGBLight {
         buf: Buffer;
         pin: DigitalPin;
         // TODO: encode as bytes instead of 32bit
         brightness: number;
         start: number; // start offset in LED strip
         _length: number; // number of LEDs
-        _mode: QdeeRGBPixelMode;
+        _mode: StartbitRGBPixelMode;
 
         setBrightness(brightness: number): void {
             this.brightness = brightness & 0xff;
@@ -120,7 +120,7 @@ namespace QdeeRGBLight {
             // don't yield to avoid races on initialization
         }
 
-        setBeltPixelColor(pixeloffset: number, rgb: QdeeRGBColors): void {
+        setBeltPixelColor(pixeloffset: number, rgb: StartbitRGBColors): void {
             if (pixeloffset == 15)//全部
             {
                 for (let i = 0; i < this._length; i++)
@@ -136,11 +136,11 @@ namespace QdeeRGBLight {
             }
             
         }
-        singleSetBeltPixelColor(pixeloffset: number, rgb: QdeeRGBColors): void {
+        singleSetBeltPixelColor(pixeloffset: number, rgb: StartbitRGBColors): void {
             this.setPixelRGB(pixeloffset, rgb);
         }
 
-        setPixelColor(pixeloffset: number, rgb: QdeeRGBColors): void {
+        setPixelColor(pixeloffset: number, rgb: StartbitRGBColors): void {
             if (pixeloffset == this._length)//全部
             {
                 for (let i = 0; i < this._length; i++)
@@ -170,7 +170,7 @@ namespace QdeeRGBLight {
         }
 
         private setPixelRGBValue(pixeloffset: number, r: number, g: number, b: number): void {
-            let stride = this._mode === QdeeRGBPixelMode.RGBW ? 4 : 3;
+            let stride = this._mode === StartbitRGBPixelMode.RGBW ? 4 : 3;
             pixeloffset = (pixeloffset + this.start) * stride;
 
             let br = this.brightness;
@@ -182,51 +182,51 @@ namespace QdeeRGBLight {
             this.setBufferRGB(pixeloffset, r, g, b)
         }
         
-        private setPixelRGB(pixeloffset: number, rgb: QdeeRGBColors): void {
+        private setPixelRGB(pixeloffset: number, rgb: StartbitRGBColors): void {
             if (pixeloffset < 0
                 || pixeloffset >= this._length)
                 return;
             let tureRgb = 0;
                 switch (rgb)
                 {
-                    case QdeeRGBColors.Red:
+                    case StartbitRGBColors.Red:
                         tureRgb = 0xFF0000;
                         break;    
     
-                    case QdeeRGBColors.Orange:
+                    case StartbitRGBColors.Orange:
                         tureRgb = 0xF58517;    
                         break;    
     
-                    case QdeeRGBColors.Yellow:
+                    case StartbitRGBColors.Yellow:
                         tureRgb = 0xFFFF00;
                         break;    
                         
-                    case QdeeRGBColors.Green:
+                    case StartbitRGBColors.Green:
                         tureRgb = 0x00FF00;    
                         break;    
     
-                    case QdeeRGBColors.Blue:
+                    case StartbitRGBColors.Blue:
                         tureRgb = 0x0000FF;
                         break;    
                         
-                    case QdeeRGBColors.Indigo:
+                    case StartbitRGBColors.Indigo:
                         tureRgb = 0x4b0082;    
                         break;    
     
-                    case QdeeRGBColors.Violet:
+                    case StartbitRGBColors.Violet:
                         tureRgb = 0x8a2be2;
                         break;    
                         
-                    case QdeeRGBColors.Purple:
+                    case StartbitRGBColors.Purple:
                         tureRgb = 0xFF00FF;    
                         break;   
     
-                    case QdeeRGBColors.White:
+                    case StartbitRGBColors.White:
                         tureRgb = 0xFFFFFF;    
                         break;   
                 }
 
-            let stride = this._mode === QdeeRGBPixelMode.RGBW ? 4 : 3;
+            let stride = this._mode === StartbitRGBPixelMode.RGBW ? 4 : 3;
             pixeloffset = (pixeloffset + this.start) * stride;
 
             let red = unpackR(tureRgb);
@@ -243,7 +243,7 @@ namespace QdeeRGBLight {
         }
 
         private setBufferRGB(offset: number, red: number, green: number, blue: number): void {
-            if (this._mode === QdeeRGBPixelMode.RGB_RGB) {
+            if (this._mode === StartbitRGBPixelMode.RGB_RGB) {
                 this.buf[offset + 0] = red;
                 this.buf[offset + 1] = green;
             } else {
@@ -258,14 +258,14 @@ namespace QdeeRGBLight {
         }
 
         clear(): void {
-            const stride = this._mode === QdeeRGBPixelMode.RGBW ? 4 : 3;
+            const stride = this._mode === StartbitRGBPixelMode.RGBW ? 4 : 3;
             this.buf.fill(0, this.start * stride, this._length * stride);
             this.show();
         }
     }
-    export function create(pin: DigitalPin, numleds: number, mode: QdeeRGBPixelMode): LHQdeeRGBLight {
-        let light = new LHQdeeRGBLight();
-        let stride = mode === QdeeRGBPixelMode.RGBW ? 4 : 3;
+    export function create(pin: DigitalPin, numleds: number, mode: StartbitRGBPixelMode): LHStartbitRGBLight {
+        let light = new LHStartbitRGBLight();
+        let stride = mode === StartbitRGBPixelMode.RGBW ? 4 : 3;
         light.buf = pins.createBuffer(numleds * stride);
         light.start = 0;
         light._length = numleds;
