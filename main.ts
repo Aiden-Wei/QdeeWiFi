@@ -312,7 +312,7 @@ namespace startbitwifi {
         buf[0] = 0x55;
         buf[1] = 0x55;
         buf[2] = 0x04;
-        buf[3] = 0x3E;//cmd type
+        buf[3] = 0x3F;//cmd type
         buf[4] = 0x01;
         buf[5] = 0x00;
         serial.writeBuffer(buf);
@@ -909,7 +909,7 @@ namespace startbitwifi {
         buf[0] = 0x55;
         buf[1] = 0x55;
         buf[2] = 0x05;
-        buf[3] = 0x03E;//cmd type
+        buf[3] = 0x03F;//cmd type
         buf[4] = 0x02;
         buf[5] = port;
         buf[6] = status;
@@ -1111,7 +1111,7 @@ namespace startbitwifi {
         buf[0] = 0x55;
         buf[1] = 0x55;
         buf[2] = 0x04;
-        buf[3] = 0x3E;//cmd type
+        buf[3] = 0x3F;//cmd type
         buf[4] = 0x03;
         buf[5] = num - 1;
         serial.writeBuffer(buf);
@@ -1131,7 +1131,7 @@ namespace startbitwifi {
         buf[0] = 0x55;
         buf[1] = 0x55;
         buf[2] = 0x06;
-        buf[3] = 0x3E;//cmd type
+        buf[3] = 0x3F;//cmd type
         buf[4] = 0x04;
         buf[5] = 0xFF;
         buf[6] = 0xFF;
@@ -1430,7 +1430,7 @@ namespace startbitwifi {
        buf[0] = 0x55;
        buf[1] = 0x55;
        buf[2] = (cmdStr.length + 3) & 0xff;
-       buf[3] = 0x3E;//cmd type
+       buf[3] = 0x3F;//cmd type
        buf[4] = 0x09;
        for (let i = 0; i < cmdStr.length; i++) {
            buf[5 + i] = cmdStr.charCodeAt(i);
@@ -1503,7 +1503,7 @@ namespace startbitwifi {
             buf[0] = 0x55;
             buf[1] = 0x55;
             buf[2] = (cmdStr.length + 3) & 0xff;
-            buf[3] = 0x3E;//cmd type
+            buf[3] = 0x3F;//cmd type
             buf[4] = 0x09;
             for (let i = 0; i < cmdStr.length; i++) {
                 buf[5 + i] = cmdStr.charCodeAt(i);
