@@ -1,21 +1,23 @@
-
 /*
  startbitwifi package
 */
 //% weight=10 icon="\uf1eb" color=#2896ff
 namespace startbitwifi {
+	
     export enum Servos {
         //% block="servo 1"
         Servo1 = 0x01,
         //% block="servo 2"
         Servo2 = 0x02
     }
+	
     export enum ultrasonicPort {
         //% block="Port 1"
         port1 = 0x01,
         //% block="Port 2"
         port2 = 0x02
     }
+	
     export enum busServoPort {
         //% block="Port 10"
         port10 = 0x0A
@@ -1464,7 +1466,7 @@ namespace startbitwifi {
         buf[0] = 0x55;
         buf[1] = 0x55;
         buf[2] = (cmdStr.length + 3) & 0xff;
-        buf[3] = 0x3E;//cmd type
+        buf[3] = 0x3F;//cmd type
         buf[4] = 0x09;
         for (let i = 0; i < cmdStr.length; i++) {
             buf[5 + i] = cmdStr.charCodeAt(i);
