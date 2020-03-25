@@ -165,8 +165,6 @@ namespace startbitwifi {
     //% weight=100 blockId=startbitwifi_Init block="Initialize Startbit IoT"
     //% subcategory=Init
     export function startbitwifi_Init() {
-	pins.setPull(DigitalPin.P16, PinPullMode.PullUp)
-	pins.digitalWritePin(DigitalPin.P16, 1)
         startbit_initRGBLight();
         serial.redirect(
             SerialPin.P12,
